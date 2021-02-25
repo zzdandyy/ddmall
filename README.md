@@ -1,4 +1,4 @@
-# ddmall -微服务架构项目
+# ddmall -微服务架构商城项目
 
 基于 spring 2.4.3 构建的微服务项目，spring cloud 使用目前的 2020.0.1 版本
 
