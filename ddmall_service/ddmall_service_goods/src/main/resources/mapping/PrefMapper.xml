@@ -2,7 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pro.doublez.ddmall.service.goods.dao.PrefMapper">
 
-    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Pref" resultType="pro.doublez.ddmall.goods.pojo.Pref">
+    <resultMap id="BaseResultMap" type="pro.doublez.ddmall.goods.pojo.Pref">
+        <result column="cate_id" property="cateId" />
+        <result column="buy_money"  property="buyMoney" />
+        <result column="pre_money"  property="preMoney" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+    </resultMap>
+    
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Pref" resultMap="BaseResultMap">
         select *
         from tb_pref
         where 1 = 1
@@ -29,7 +37,7 @@
         </if>
     </select>
 
-    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Pref" parameterType="java.lang.Integer">
+    <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select *
         from tb_pref
         where id = #{id}
@@ -39,48 +47,48 @@
         insert into tb_pref
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="cateId != null">
-                cate_id
+                cate_id,
             </if>
             <if test="buyMoney != null">
-                buy_money
+                buy_money,
             </if>
             <if test="preMoney != null">
-                pre_money
+                pre_money,
             </if>
             <if test="startTime != null">
-                start_time
+                start_time,
             </if>
             <if test="endTime != null">
-                end_time
+                end_time,
             </if>
             <if test="type != null">
-                type
+                type,
             </if>
             <if test="state != null">
-                state
+                state,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="cateId != null">
-                #{cateId}
+                #{cateId},
             </if>
             <if test="buyMoney != null">
-                #{buyMoney}
+                #{buyMoney},
             </if>
             <if test="preMoney != null">
-                #{preMoney}
+                #{preMoney},
             </if>
             <if test="startTime != null">
-                #{startTime}
+                #{startTime},
             </if>
             <if test="endTime != null">
-                #{endTime}
+                #{endTime},
             </if>
             <if test="type != null">
-                #{type}
+                #{type},
             </if>
             <if test="state != null">
-                #{state}
+                #{state},
             </if>
         </trim>
     </insert>
@@ -89,25 +97,25 @@
         update tb_pref
         <set>
             <if test="cateId != null">
-                cate_id = #{cateId}
+                cate_id = #{cateId},
             </if>
             <if test="buyMoney != null">
-                buy_money = #{buyMoney}
+                buy_money = #{buyMoney},
             </if>
             <if test="preMoney != null">
-                pre_money = #{preMoney}
+                pre_money = #{preMoney},
             </if>
             <if test="startTime != null">
-                start_time = #{startTime}
+                start_time = #{startTime},
             </if>
             <if test="endTime != null">
-                end_time = #{endTime}
+                end_time = #{endTime},
             </if>
             <if test="type != null">
-                type = #{type}
+                type = #{type},
             </if>
             <if test="state != null">
-                state = #{state}
+                state = #{state},
             </if>
         </set>
         where id = #{id}

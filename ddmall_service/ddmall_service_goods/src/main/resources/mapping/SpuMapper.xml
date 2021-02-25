@@ -2,8 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pro.doublez.ddmall.service.goods.dao.SpuMapper">
 
-    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Spu"
-            resultType="pro.doublez.ddmall.goods.pojo.Spu">
+    <resultMap id="BaseResultMap" type="pro.doublez.ddmall.goods.pojo.Spu">
+        <result column="brand_id" property="brandId" />
+        <result column="category1_id"  property="category1Id" />
+        <result column="category2_id"  property="category2Id" />
+        <result column="category3_id" property="category3Id" />
+        <result column="template_id" property="templateId" />
+        <result column="freight_id" property="freightId" />
+        <result column="sale_service" property="saleService" />
+        <result column="spec_items" property="specItems" />
+        <result column="sale_num" property="saleNum" />
+        <result column="sale_service" property="saleService" />
+        <result column="comment_num" property="commentNum" />
+        <result column="is_marketable" property="isMarketable" />
+        <result column="is_enable_spec" property="isEnableSpec" />
+        <result column="is_delete" property="isDelete" />
+
+    </resultMap>
+    
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Spu" resultMap="BaseResultMap">
         select *
         from tb_spu
         where 1 = 1
@@ -69,7 +86,7 @@
         </if>
     </select>
 
-    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Spu" parameterType="java.lang.String">
+    <select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
         select *
         from tb_spu
         where id = #{id}

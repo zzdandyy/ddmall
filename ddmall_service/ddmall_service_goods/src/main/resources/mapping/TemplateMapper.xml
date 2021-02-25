@@ -2,22 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pro.doublez.ddmall.service.goods.dao.TemplateMapper">
 
-    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Template" resultType="pro.doublez.ddmall.goods.pojo.Template">
+    <resultMap id="BaseResultMap" type="pro.doublez.ddmall.goods.pojo.Template">
+        <result column="spec_num" property="specNum" />
+        <result column="para_num"  property="paraNum" />
+    </resultMap>
+    
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Template" resultMap="BaseResultMap">
         select *
         from tb_template
         where 1 = 1
         <if test="name != null">
-            and name #{name}
+            and name= #{name}
         </if>
         <if test="specNum != null">
-            and spec_num #{specNum}
+            and spec_num =#{specNum}
         </if>
         <if test="paraNum != null">
             and para_num = #{paraNum}
         </if>
     </select>
 
-    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Template" parameterType="java.lang.Integer">
+    <select id="findById"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select *
         from tb_template
         where id = #{id}
@@ -53,10 +58,10 @@
         update tb_template
         <set>
             <if test="name != null">
-                name #{name}
+                name= #{name}
             </if>
             <if test="specNum != null">
-                spec_num #{specNum}
+                spec_num =#{specNum}
             </if>
             <if test="paraNum != null">
                 para_num = #{paraNum}

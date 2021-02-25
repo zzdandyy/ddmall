@@ -18,6 +18,7 @@ public class CategoryBrandServiceImpl implements CategoryBrandService {
 
     @Override
     public List<CategoryBrand> findList(CategoryBrand categoryBrand) {
+
         return categoryBrandMapper.findList(categoryBrand);
     }
 

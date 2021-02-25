@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.CategoryBrandMapper">
+
+    <resultMap id="BaseResultMap" type="pro.doublez.ddmall.goods.pojo.CategoryBrand">
+        <result column="category_id" property="categoryId" />
+        <result column="brand_id" property="brandId" />
+    </resultMap>
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.CategoryBrand" resultMap="BaseResultMap">
+        select *
+        from tb_category_brand
+        where 1 = 1
+        <if test="categoryId != null">
+            and category_id= #{categoryId}
+        </if>
+        <if test="brandId != null">
+            and brand_id= #{brandId}
+        </if>
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.CategoryBrand">
+        insert into tb_category_brand
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
+                category_id,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
+                #{categoryId},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+        </trim>
+    </insert>
+</mapper>

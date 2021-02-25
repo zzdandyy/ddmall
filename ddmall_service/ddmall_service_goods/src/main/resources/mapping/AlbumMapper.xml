@@ -2,12 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pro.doublez.ddmall.service.goods.dao.AlbumMapper">
 
-    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Album" resultType="pro.doublez.ddmall.goods.pojo.Album">
+    <resultMap id="BaseResultMap" type="pro.doublez.ddmall.goods.pojo.Album">
+        <result column="image_items" property="imageItems" />
+    </resultMap>
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Album" resultMap="BaseResultMap">
         select *
         from tb_album
         where 1 = 1
         <if test="title != null">
-            and title = {title}
+            and title = #{title}
         </if>
         <if test="image != null">
             and image = #{image}
@@ -17,7 +21,7 @@
         </if>
     </select>
 
-    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Album" parameterType="java.lang.Long">
+    <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select *
         from tb_album
         where id = #{id}

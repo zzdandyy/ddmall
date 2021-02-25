@@ -82,5 +82,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-test:5.3.4" level="project" />
     <orderEntry type="library" name="Maven: org.xmlunit:xmlunit-core:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.13.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
   </component>
 </module>
