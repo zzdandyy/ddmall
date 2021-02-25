@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.BrandMapper">
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Brand" resultType="pro.doublez.ddmall.goods.pojo.Brand">
+        select *
+        from tb_brand
+        where 1 = 1
+        <if test="name != null">
+            and name #{name}
+        </if>
+        <if test="image != null">
+            and image #{image}
+        </if>
+        <if test="letter != null">
+            and letter = #{letter}
+        </if>
+        <if test="seq != null">
+            and seq = #{seq}
+        </if>
+    </select>
+
+    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Brand" parameterType="java.lang.Integer">
+        select *
+        from tb_brand
+        where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.Brand">
+        insert into tb_brand
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="letter != null">
+                letter,
+            </if>
+            <if test="seq != null">
+                seq,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name},
+            </if>
+            <if test="image != null">
+                #{image},
+            </if>
+            <if test="letter != null">
+                #{letter},
+            </if>
+            <if test="seq != null">
+                #{seq},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="pro.doublez.ddmall.goods.pojo.Brand">
+        update tb_brand
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="letter != null">
+                letter = #{letter},
+            </if>
+            <if test="seq != null">
+                seq = #{seq},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Integer">
+        delete from tb_brand where id = #{id}
+    </update>
+
+</mapper>

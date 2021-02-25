@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.SpecMapper">
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Spec" resultType="pro.doublez.ddmall.goods.pojo.Spec">
+        select *
+        from tb_spec
+        where 1 = 1
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        <if test="options != null">
+            and options = {options}
+        </if>
+        <if test="seq != null">
+            and seq = #{seq}
+        </if>
+        <if test="templateId != null">
+            and template_id = #{templateId}
+        </if>
+    </select>
+
+    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Spec" parameterType="java.lang.Integer">
+        select *
+        from tb_spec
+        where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.Spec">
+        insert into tb_spec
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                name
+            </if>
+            <if test="options != null">
+                options
+            </if>
+            <if test="seq != null">
+                seq
+            </if>
+            <if test="templateId != null">
+                template_id
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name}
+            </if>
+            <if test="options != null">
+                #{options}
+            </if>
+            <if test="seq != null">
+                #{seq}
+            </if>
+            <if test="templateId != null">
+                #{templateId}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="pro.doublez.ddmall.goods.pojo.Spec">
+        update tb_spec
+        <set>
+            <if test="name != null">
+                #{name}
+            </if>
+            <if test="options != null">
+                #{options}
+            </if>
+            <if test="seq != null">
+                #{seq}
+            </if>
+            <if test="templateId != null">
+                #{templateId}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Integer">
+        delete from tb_spec where id = #{id}
+    </update>
+
+</mapper>

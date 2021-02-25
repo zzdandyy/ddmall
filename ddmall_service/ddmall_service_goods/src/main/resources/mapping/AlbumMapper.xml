@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.AlbumMapper">
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Album" resultType="pro.doublez.ddmall.goods.pojo.Album">
+        select *
+        from tb_album
+        where 1 = 1
+        <if test="title != null">
+            and title = {title}
+        </if>
+        <if test="image != null">
+            and image = #{image}
+        </if>
+        <if test="imageItems != null">
+            and image_items = #{imageItems}
+        </if>
+    </select>
+
+    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Album" parameterType="java.lang.Long">
+        select *
+        from tb_album
+        where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.Album">
+        insert into tb_album
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+            <if test="imageItems != null">
+                image_items,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="image != null">
+                #{image},
+            </if>
+            <if test="imageItems != null">
+                #{imageItems},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="pro.doublez.ddmall.goods.pojo.Album">
+        update tb_album
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="imageItems != null">
+                image_items = #{imageItems},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Long">
+        delete from tb_album where id = #{id}
+    </update>
+
+</mapper>

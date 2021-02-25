@@ -1,0 +1,57 @@
+server:
+  port: 9188  #端口
+
+spring:
+  application:
+    name: config   #微服务的名称
+
+  # 连接数据库的配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///ddmall_config?serverTimezone=Asia/Shanghai
+    username: root
+    password: aa2217117
+
+  # 因为eureka停止维护，使用consul作为注册中心
+  cloud:
+    consul:
+      host: localhost  #consul服务端的ip
+      port: 8500  #consul服务端的端口，默认8500
+      discovery:
+        service-name: ${spring.application.name} #当前应用注册到consul的名称
+        prefer-ip-address: true #注册ip
+
+  zipkin:
+    base-url: http://localhost:9411/ #zipkin的服务端地址
+
+  sleuth:
+    sampler:
+      probability: 1  #采集率，默认是0.1，10%
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: pro.doublez.ddmall.*.pojo  # 注意：对应实体类的路径
+
+#eureka:
+#  instance:
+#    prefer-ip-address: true   # 使用ip地址
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:6868/eureka   #注册到eureka
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000  #建立连接超时
+        readTimeout: 3000 #逻辑超时
+
+#  actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #暴露所有接口
+  endpoint:
+    shutdown.enabled: true  #允许shutdown
+    health.show-details: always #展示详细的health信息

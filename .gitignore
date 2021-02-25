@@ -1,0 +1,17 @@
+# Project exclude paths
+/ddmall_common/target/
+/ddmall_eureka/target/
+/ddmall_service/ddmall_service_business/target/
+/ddmall_service/ddmall_service_config/target/
+/ddmall_service/ddmall_service_goods/target/
+/ddmall_service/ddmall_service_order/target/
+/ddmall_service/ddmall_service_seckill/target/
+/ddmall_service/ddmall_service_system/target/
+/ddmall_service/ddmall_service_user/target/
+/ddmall_service_api/ddmall_service_business_api/target/
+/ddmall_service_api/ddmall_service_config_api/target/
+/ddmall_service_api/ddmall_service_goods_api/target/
+/ddmall_service_api/ddmall_service_order_api/target/
+/ddmall_service_api/ddmall_service_seckill_api/target/
+/ddmall_service_api/ddmall_service_system_api/target/
+/ddmall_service_api/ddmall_service_user_api/target/

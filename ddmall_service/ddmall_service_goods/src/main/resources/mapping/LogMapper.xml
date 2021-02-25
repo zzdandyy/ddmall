@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.LogMapper">
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Log" resultType="pro.doublez.ddmall.goods.pojo.Log">
+        select *
+        from tb_log
+        where 1 = 1
+        <if test="branchId != null">
+            and branch_id = #{brandId}
+        </if>
+        <if test="xid != null">
+            and xid = #{xid}
+        </if>
+        <if test="rollbackInfo != null">
+            and rollback_info = #{rollbackInfo}
+        </if>
+        <if test="logStatus != null">
+            and log_status = #{logStatus}
+        </if>
+        <if test="logCreated != null">
+            and log_created = #{logCreated}
+        </if>
+        <if test="logModified != null">
+            and log_modified = #{logModified}
+        </if>
+        <if test="ext != null">
+            and ext = #{ext}
+        </if>
+    </select>
+
+    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Log" parameterType="java.lang.Long">
+        select *
+        from tb_log
+        where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.Log">
+        insert into tb_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="branchId != null">
+                branch_id
+            </if>
+            <if test="xid != null">
+                xid
+            </if>
+            <if test="rollbackInfo != null">
+                rollback_info
+            </if>
+            <if test="logStatus != null">
+                log_status
+            </if>
+            <if test="logCreated != null">
+                log_created
+            </if>
+            <if test="logModified != null">
+                log_modified
+            </if>
+            <if test="ext != null">
+                ext
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="branchId != null">
+                #{brandId}
+            </if>
+            <if test="xid != null">
+                #{xid}
+            </if>
+            <if test="rollbackInfo != null">
+                #{rollbackInfo}
+            </if>
+            <if test="logStatus != null">
+                #{logStatus}
+            </if>
+            <if test="logCreated != null">
+                #{logCreated}
+            </if>
+            <if test="logModified != null">
+                #{logModified}
+            </if>
+            <if test="ext != null">
+                #{ext}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="pro.doublez.ddmall.goods.pojo.Log">
+        update tb_log
+        <set>
+            <if test="branchId != null">
+                branch_id = #{brandId}
+            </if>
+            <if test="xid != null">
+                xid = #{xid}
+            </if>
+            <if test="rollbackInfo != null">
+                rollback_info = #{rollbackInfo}
+            </if>
+            <if test="logStatus != null">
+                log_status = #{logStatus}
+            </if>
+            <if test="logCreated != null">
+                log_created = #{logCreated}
+            </if>
+            <if test="logModified != null">
+                log_modified = #{logModified}
+            </if>
+            <if test="ext != null">
+                ext = #{ext}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Long">
+        delete from tb_log where id = #{id}
+    </update>
+
+</mapper>

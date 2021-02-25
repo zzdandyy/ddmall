@@ -1,0 +1,50 @@
+package pro.doublez.ddmall.user.pojo;
+
+
+public class Template {
+
+	private Integer id;
+	private String name;
+	private Integer specNum;
+	private Integer paraNum;
+
+
+	//get方法
+	public Integer getId() {
+		return id;
+	}
+
+	//set方法
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	//get方法
+	public String getName() {
+		return name;
+	}
+
+	//set方法
+	public void setName(String name) {
+		this.name = name;
+	}
+	//get方法
+	public Integer getSpecNum() {
+		return specNum;
+	}
+
+	//set方法
+	public void setSpecNum(Integer specNum) {
+		this.specNum = specNum;
+	}
+	//get方法
+	public Integer getParaNum() {
+		return paraNum;
+	}
+
+	//set方法
+	public void setParaNum(Integer paraNum) {
+		this.paraNum = paraNum;
+	}
+
+
+}

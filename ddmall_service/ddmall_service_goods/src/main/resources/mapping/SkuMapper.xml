@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.SkuMapper">
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Sku" resultType="pro.doublez.ddmall.goods.pojo.Sku">
+        select *
+        from tb_sku
+        where 1 = 1
+        <if test="sn != null">
+            and sn = #{sn}
+        </if>
+        <if test="name != null">
+            and name = #{name}
+        </if>
+        <if test="alertNum != null">
+            and alert_num = #{alertNum}
+        </if>
+        <if test="image != null">
+            and image = #{image}
+        </if>
+        <if test="images != null">
+            and images = #{images}
+        </if>
+        <if test="weight != null">
+            and weight = #{weight}
+        </if>
+        <if test="createTime != null">
+            and create_time = #{createTime}
+        </if>
+        <if test="updateTime != null">
+            and update_time = #{updateTime}
+        </if>
+        <if test="spuId != null">
+            and spu_id = #{spuId}
+        </if>
+        <if test="categoryId != null">
+            and category_id = #{categoryId}
+        </if>
+        <if test="categoryName != null">
+            and category_name = #{categoryName}
+        </if>
+        <if test="brandName != null">
+            and brand_name = #{brandName}
+        </if>
+        <if test="spec != null">
+            and spec = #{spec}
+        </if>
+        <if test="saleNum != null">
+            and sale_num = #{saleNum}
+        </if>
+        <if test="commentNum != null">
+            and comment_num = #{commentNum}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+    </select>
+
+    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Sku" parameterType="java.lang.String">
+        select *
+        from tb_sku
+        where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.Sku">
+        insert into tb_sku
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sn != null">
+                sn
+            </if>
+            <if test="name != null">
+                name
+            </if>
+            <if test="alertNum != null">
+                alert_num
+            </if>
+            <if test="image != null">
+                image
+            </if>
+            <if test="images != null">
+                images
+            </if>
+            <if test="weight != null">
+                weight
+            </if>
+            <if test="createTime != null">
+                create_time
+            </if>
+            <if test="updateTime != null">
+                update_time
+            </if>
+            <if test="spuId != null">
+                spu_id
+            </if>
+            <if test="categoryId != null">
+                category_id
+            </if>
+            <if test="categoryName != null">
+                category_name
+            </if>
+            <if test="brandName != null">
+                brand_name
+            </if>
+            <if test="spec != null">
+                spec
+            </if>
+            <if test="saleNum != null">
+                sale_num
+            </if>
+            <if test="commentNum != null">
+                comment_num
+            </if>
+            <if test="status != null">
+                status
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sn != null">
+                #{sn}
+            </if>
+            <if test="name != null">
+                #{name}
+            </if>
+            <if test="alertNum != null">
+                #{alertNum}
+            </if>
+            <if test="image != null">
+                #{image}
+            </if>
+            <if test="images != null">
+                #{images}
+            </if>
+            <if test="weight != null">
+                #{weight}
+            </if>
+            <if test="createTime != null">
+                #{createTime}
+            </if>
+            <if test="updateTime != null">
+                #{updateTime}
+            </if>
+            <if test="spuId != null">
+                #{spuId}
+            </if>
+            <if test="categoryId != null">
+                #{categoryId}
+            </if>
+            <if test="categoryName != null">
+                #{categoryName}
+            </if>
+            <if test="brandName != null">
+                #{brandName}
+            </if>
+            <if test="spec != null">
+                #{spec}
+            </if>
+            <if test="saleNum != null">
+                #{saleNum}
+            </if>
+            <if test="commentNum != null">
+                #{commentNum}
+            </if>
+            <if test="status != null">
+                #{status}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="pro.doublez.ddmall.goods.pojo.Sku">
+        update tb_sku
+        <set>
+            <if test="sn != null">
+                sn = #{sn}
+            </if>
+            <if test="name != null">
+                name = #{name}
+            </if>
+            <if test="alertNum != null">
+                alert_num = #{alertNum}
+            </if>
+            <if test="image != null">
+                image = #{image}
+            </if>
+            <if test="images != null">
+                images = #{images}
+            </if>
+            <if test="weight != null">
+                weight = #{weight}
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime}
+            </if>
+            <if test="spuId != null">
+                spu_id = #{spuId}
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId}
+            </if>
+            <if test="categoryName != null">
+                category_name = #{categoryName}
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName}
+            </if>
+            <if test="spec != null">
+                spec = #{spec}
+            </if>
+            <if test="saleNum != null">
+                sale_num = #{saleNum}
+            </if>
+            <if test="commentNum != null">
+                comment_num = #{commentNum}
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.String">
+        delete from tb_sku where id = #{id}
+    </update>
+
+</mapper>

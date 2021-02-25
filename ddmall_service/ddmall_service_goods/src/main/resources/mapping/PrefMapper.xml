@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro.doublez.ddmall.service.goods.dao.PrefMapper">
+
+    <select id="findList" parameterType="pro.doublez.ddmall.goods.pojo.Pref" resultType="pro.doublez.ddmall.goods.pojo.Pref">
+        select *
+        from tb_pref
+        where 1 = 1
+        <if test="cateId != null">
+            and cate_id = #{cateId}
+        </if>
+        <if test="buyMoney != null">
+            and buy_money = #{buyMoney}
+        </if>
+        <if test="preMoney != null">
+            and pre_money = #{preMoney}
+        </if>
+        <if test="startTime != null">
+            and start_time = #{startTime}
+        </if>
+        <if test="endTime != null">
+            and end_time = #{endTime}
+        </if>
+        <if test="type != null">
+            and type = #{type}
+        </if>
+        <if test="state != null">
+            and state = #{state}
+        </if>
+    </select>
+
+    <select id="findById" resultType="pro.doublez.ddmall.goods.pojo.Pref" parameterType="java.lang.Integer">
+        select *
+        from tb_pref
+        where id = #{id}
+    </select>
+
+    <insert id="add" parameterType="pro.doublez.ddmall.goods.pojo.Pref">
+        insert into tb_pref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cateId != null">
+                cate_id
+            </if>
+            <if test="buyMoney != null">
+                buy_money
+            </if>
+            <if test="preMoney != null">
+                pre_money
+            </if>
+            <if test="startTime != null">
+                start_time
+            </if>
+            <if test="endTime != null">
+                end_time
+            </if>
+            <if test="type != null">
+                type
+            </if>
+            <if test="state != null">
+                state
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cateId != null">
+                #{cateId}
+            </if>
+            <if test="buyMoney != null">
+                #{buyMoney}
+            </if>
+            <if test="preMoney != null">
+                #{preMoney}
+            </if>
+            <if test="startTime != null">
+                #{startTime}
+            </if>
+            <if test="endTime != null">
+                #{endTime}
+            </if>
+            <if test="type != null">
+                #{type}
+            </if>
+            <if test="state != null">
+                #{state}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="pro.doublez.ddmall.goods.pojo.Pref">
+        update tb_pref
+        <set>
+            <if test="cateId != null">
+                cate_id = #{cateId}
+            </if>
+            <if test="buyMoney != null">
+                buy_money = #{buyMoney}
+            </if>
+            <if test="preMoney != null">
+                pre_money = #{preMoney}
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime}
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime}
+            </if>
+            <if test="type != null">
+                type = #{type}
+            </if>
+            <if test="state != null">
+                state = #{state}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="delete" parameterType="java.lang.Integer">
+        delete from tb_pref where id = #{id}
+    </update>
+
+</mapper>
