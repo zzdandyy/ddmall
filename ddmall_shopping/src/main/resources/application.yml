@@ -1,0 +1,12 @@
+server:
+  port: 9121
+spring:
+  application:
+    name: shopping
+eureka:
+  client:
+    fetch-registry: true #是否从eureka中获取信息
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka
+  instance:
+    prefer-ip-address: true

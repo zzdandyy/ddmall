@@ -1,0 +1,23 @@
+server:
+  port: 9031
+spring:
+  application:
+    name: order
+  datasource:
+    hikari:
+      maximum-pool-size: 50  #最大连接数
+      minimum-idle: 3 #空闲连接
+      max-lifetime: 30000
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ddmall_order?serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: aa2217117
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka
+  instance:
+    prefer-ip-address: true
