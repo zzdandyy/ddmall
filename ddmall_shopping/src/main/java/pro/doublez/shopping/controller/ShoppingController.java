@@ -40,6 +40,9 @@ public class ShoppingController {
 
 
     private ResultDto<Boolean> newCommonOrder(int uid, long gid, int count, double price) {
+        if(orderFeign.findAllNoPayOrder(uid).length>=5){
+            throw new BaseException(StatusCode.ORDERERROR, "超过五个未支付的订单");
+        }
         Integer flag = orderFeign.addOrder(uid, gid, count, price, 1);
         ResultDto<Boolean> dto = new ResultDto<>();
         if (flag == 0) {
