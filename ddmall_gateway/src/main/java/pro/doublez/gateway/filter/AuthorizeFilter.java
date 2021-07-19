@@ -30,12 +30,8 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         if(Pattern.matches("/shopping/.*", path) || Pattern.matches("/personal/.*", path)){
             //需要用户权限
             String token = headers.getFirst("user-token");
-            if(token==null || "".equals(token)){
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                return response.setComplete();
-            }
             try {
-                Claims claims = JwtUtil.parseJWT(token);
+                JwtUtil.parseJWT(token);
             } catch (Exception e){
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
@@ -45,10 +41,6 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         if(Pattern.matches("/management/.*", path)){
             //需要管理员权限
             String token = headers.getFirst("admin-token");
-            if(token==null || "".equals(token)){
-                response.setStatusCode(HttpStatus.UNAUTHORIZED);
-                return response.setComplete();
-            }
             try {
                 JwtUtil.parseJWT(token);
             } catch (Exception e){

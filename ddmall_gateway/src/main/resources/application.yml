@@ -75,3 +75,10 @@ spring:
             - Path=/shopping/**
           filters:
             - StripPrefix=1
+
+        - id: management
+          uri: lb://management
+          predicates:
+            - Path=/management/**
+          filters:
+            - StripPrefix=1
