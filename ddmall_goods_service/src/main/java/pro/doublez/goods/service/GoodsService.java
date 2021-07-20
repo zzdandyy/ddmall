@@ -53,4 +53,7 @@ public interface GoodsService {
 
     //删除商品
     Integer deleteGoodsById(long id);
+
+    //删除所有被删除的商品
+    Integer deleteGoodsInDel();
 }

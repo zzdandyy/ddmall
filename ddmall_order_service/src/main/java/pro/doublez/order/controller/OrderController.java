@@ -70,4 +70,9 @@ public class OrderController {
         return orderService.findUserAllOrderNoCancelPay(uid);
     }
 
+    //管理员查看所有已支付订单
+    @GetMapping("/find_all_pay")
+    public Order[] findAllPay(){
+        return orderService.findAllPayOrder();
+    }
 }

@@ -1,10 +1,12 @@
 package pro.doublez.common.controller;
 
 import org.springframework.web.bind.annotation.*;
+import pro.doublez.common.feign.AdminFeign;
 import pro.doublez.common.feign.GoodsFeign;
 import pro.doublez.common.feign.UserFeign;
 import pro.doublez.ddmall_api.constant.StatusCode;
 import pro.doublez.ddmall_api.dto.ResultDto;
+import pro.doublez.ddmall_api.pojo.Admin;
 import pro.doublez.ddmall_api.pojo.Goods;
 import pro.doublez.ddmall_api.pojo.User;
 import pro.doublez.ddmall_api.utils.JwtUtil;
@@ -24,10 +26,31 @@ public class CommonController {
 
     private final UserFeign userFeign;
     private final GoodsFeign goodsFeign;
+    private final AdminFeign adminFeign;
 
-    public CommonController(UserFeign userFeign, GoodsFeign goodsFeign) {
+    public CommonController(UserFeign userFeign, GoodsFeign goodsFeign, AdminFeign adminFeign) {
         this.userFeign = userFeign;
         this.goodsFeign = goodsFeign;
+        this.adminFeign = adminFeign;
+    }
+
+
+    //管理员登录
+    @PostMapping("/admin_login")
+    public ResultDto<Boolean> adminLogin(@RequestParam String adminname, @RequestParam String password,
+                                    HttpServletResponse response) {
+        ResultDto<Boolean> dto = new ResultDto<>();
+        Admin admin = adminFeign.login(adminname, password);
+        if (admin == null) {
+            dto.setBean(false).setCode(StatusCode.USERERROR).setMsg("登录失败");
+        } else {
+            Integer id = admin.getId();
+            String s = String.valueOf(new Date().getTime());
+            dto.setBean(true).setCode(StatusCode.OK).setMsg("登录成功");
+            String jwt = JwtUtil.createJWT(s, id.toString(), JwtUtil.JWT_TTL);
+            response.setHeader("admin-token", jwt);
+        }
+        return dto;
     }
 
     //注册

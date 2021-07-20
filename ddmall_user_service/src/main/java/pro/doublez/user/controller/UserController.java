@@ -57,4 +57,9 @@ public class UserController {
     public String findUsernameById(@PathVariable int id) {
         return userService.findNameById(id);
     }
+
+    @GetMapping("find_all_user")
+    public User[] findAllUser(){
+        return userService.findAllUser();
+    }
 }

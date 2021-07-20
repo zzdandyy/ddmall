@@ -144,16 +144,6 @@ public class GoodsController {
     //移除所有删除状态的商品
     @DeleteMapping("/delete_all_in_del")
     public Integer deleteGoods() {
-        Goods[] allGoods = goodsService.findAllGoods();
-        if (allGoods == null) {
-            return 0;
-        }
-        int count = 0;
-        for (Goods goods : allGoods) {
-            if (goods.getStatus() == Goods.DELETE) {
-                count += goodsService.deleteGoodsById(goods.getId());
-            }
-        }
-        return count;
+        return goodsService.deleteGoodsInDel();
     }
 }

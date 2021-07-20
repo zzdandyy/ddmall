@@ -55,4 +55,7 @@ public interface GoodsDao {
 
     @Delete("delete from tb_goods where id = #{id}")
     Integer deleteGoodsById(long id);
+
+    @Delete("delete from tb_goods where status = -2")
+    Integer deleteGoodsInDel();
 }

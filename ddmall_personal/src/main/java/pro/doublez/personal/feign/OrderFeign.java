@@ -47,4 +47,8 @@ public interface OrderFeign {
     //查看个人已支付的订单
     @GetMapping("/order/{uid}/find_all_pay_order")
     public Order[] findAllPayOrder(@PathVariable int uid);
+
+    //管理员查看所有已支付订单
+    @GetMapping("/order/find_all_pay")
+    public Order[] findAllPay();
 }

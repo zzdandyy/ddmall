@@ -69,6 +69,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order[] findAllPayOrder() {
+        return orderDao.findAllPayOrder();
+    }
+
+    @Override
     public Integer addOrder(int uid, long gid, int count, double price, int isSeckill) {
         double totalPrice = price * count;
         Order order = new Order();

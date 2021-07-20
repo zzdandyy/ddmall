@@ -93,4 +93,9 @@ public class GoodsServiceImpl implements GoodsService {
     public Integer deleteGoodsById(long id) {
         return goodsDao.deleteGoodsById(id);
     }
+
+    @Override
+    public Integer deleteGoodsInDel() {
+        return goodsDao.deleteGoodsInDel();
+    }
 }

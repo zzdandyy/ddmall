@@ -25,10 +25,14 @@ public interface UserFeign {
                                   @RequestParam String newPassword);
 
     //根据id获取User
-    @GetMapping("/find_user_by_id/{id}")
+    @GetMapping("/user/find_user_by_id/{id}")
     public User findUserById(@PathVariable int id);
 
     //根据id获取name
-    @GetMapping("/find_name_by_id/{id}")
+    @GetMapping("/user/find_name_by_id/{id}")
     public String findUsernameById(@PathVariable int id);
+
+    //查找所有用户
+    @GetMapping("user/find_all_user")
+    public User[] findAllUser();
 }

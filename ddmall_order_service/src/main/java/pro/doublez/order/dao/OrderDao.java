@@ -41,6 +41,9 @@ public interface OrderDao {
     @Select("select form from tb_order where id = #{id}")
     Integer findFormById(long id);
 
+    @Select("select * from tb_order where status = 1")
+    Order[] findAllPayOrder();
+
     @Insert("insert into tb_order (id,uid,gid,count,totalPrice,form) " +
             "values (#{id},#{uid},#{gid},#{count},#{totalPrice},#{form})")
     Integer addOrder(Order orderBean);

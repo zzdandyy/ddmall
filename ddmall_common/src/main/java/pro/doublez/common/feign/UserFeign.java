@@ -1,10 +1,7 @@
 package pro.doublez.common.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import pro.doublez.ddmall_api.pojo.User;
 
 /**
@@ -26,4 +23,16 @@ public interface UserFeign {
     @PostMapping("/user/change_password/{username}")
     public Integer changePassword(@PathVariable String username, @RequestParam String password,
                                   @RequestParam String newPassword);
+
+    //根据id获取User
+    @GetMapping("/user/find_user_by_id/{id}")
+    public User findUserById(@PathVariable int id);
+
+    //根据id获取name
+    @GetMapping("/user/find_name_by_id/{id}")
+    public String findUsernameById(@PathVariable int id);
+
+    //查找所有用户
+    @GetMapping("user/find_all_user")
+    public User[] findAllUser();
 }

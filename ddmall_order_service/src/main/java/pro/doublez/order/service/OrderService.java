@@ -37,6 +37,9 @@ public interface OrderService {
     //查询订单类型
     Integer findFormById(long id);
 
+    //查询所有已支付订单
+    Order[] findAllPayOrder();
+
     //生成订单
     Integer addOrder(int uid, long gid, int count, double price,int isSeckill);
 
