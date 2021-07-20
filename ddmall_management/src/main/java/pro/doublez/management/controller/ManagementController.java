@@ -1,20 +1,14 @@
 package pro.doublez.management.controller;
 
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.*;
-import pro.doublez.ddmall_api.bean.ShowOrder;
-import pro.doublez.ddmall_api.constant.StatusCode;
-import pro.doublez.ddmall_api.dto.ResultDto;
-import pro.doublez.ddmall_api.pojo.Goods;
-import pro.doublez.ddmall_api.pojo.Order;
-import pro.doublez.ddmall_api.utils.BaseException;
-import pro.doublez.ddmall_api.utils.TokenUtil;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
+import pro.doublez.management.feign.AdminFeign;
 import pro.doublez.management.feign.GoodsFeign;
 import pro.doublez.management.feign.OrderFeign;
+import pro.doublez.management.feign.UserFeign;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author doublez
@@ -28,14 +22,22 @@ public class ManagementController {
     @Resource
     RedisTemplate<String, Object> redisTemplate;
 
+
     private final GoodsFeign goodsFeign;
     private final OrderFeign orderFeign;
+    private final UserFeign userFeign;
+    private final AdminFeign adminFeign;
 
 
-    public ManagementController(GoodsFeign goodsFeign, OrderFeign orderFeign) {
+    public ManagementController(GoodsFeign goodsFeign, OrderFeign orderFeign, UserFeign userFeign,
+                                AdminFeign adminFeign) {
         this.goodsFeign = goodsFeign;
         this.orderFeign = orderFeign;
+        this.userFeign = userFeign;
+        this.adminFeign = adminFeign;
     }
+
+
 
 
 }
