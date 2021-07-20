@@ -50,7 +50,7 @@ public interface GoodsDao {
     @Update("update tb_goods set count = count+#{upCount} where id = #{id}")
     Integer upGoodsCount(int upCount, long id);
 
-    @Update("update tb_goods set count = count-#{downCount} where id = #{id}")
+    @Update("update tb_goods set count = count- #{downCount} where id = #{id}")
     Integer downGoodsCount(int downCount, long id);
 
     @Delete("delete from tb_goods where id = #{id}")

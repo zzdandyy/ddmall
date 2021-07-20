@@ -108,7 +108,7 @@ public class ShoppingController {
     public ResultDto<Boolean> addSeckillOrder(@PathVariable long id, @PathVariable int count,
                                               HttpServletRequest request) {
         if (count > 2) {
-            throw new BaseException(StatusCode.SECKILLERROR, "最多只能秒杀两件商品");
+            throw new BaseException(StatusCode.SECKILLERROR, "最多只能秒杀两件该商品");
         }
         String jwt = request.getHeader("user-token");
         int uid = TokenUtil.getUid(jwt);
@@ -151,9 +151,14 @@ public class ShoppingController {
         if (goodsCount - count < 0) {
             throw new BaseException(StatusCode.ORDERERROR, "库存不足");
         }
-        //这里其实要原子操作
+
+        //减库存和生成订单最好是异步，用消息队列实现
+//        System.out.println("库存减"+count);
+//        System.out.println("生成订单");
+//        int flag = 1;
         goodsFeign.downSeckillCount(count, id);
         Integer flag = orderFeign.addOrder(uid, goods.getId(), count, totalPrice, 1);
+
         //下单成功，10分钟内不能再下单
         operations.set(alreadyGet, 1, 10, TimeUnit.MINUTES);
         ResultDto<Boolean> dto = new ResultDto<>();
@@ -171,9 +176,12 @@ public class ShoppingController {
     public ResultDto<Boolean> cancelOrder(@PathVariable long oid) {
         ResultDto<Boolean> dto = new ResultDto<>();
         Order order = orderFeign.findOrderById(oid);
+        if (order == null) {
+            throw new BaseException(StatusCode.ORDERERROR, "订单不存在");
+        }
         int count = order.getCount();
         long gid = order.getGid();
-        if (order.getStatus() != 0) {
+        if (order.getStatus() == -1) {
             throw new BaseException(StatusCode.ORDERERROR, "订单不存在");
         }
         goodsFeign.upGoodsCount(count, gid);

@@ -29,11 +29,6 @@ spring:
             - Path=/goods/**
           filters:
             - StripPrefix=1
-#            - name: RequestRateLimiter #请求数限流
-#              args:
-#                key-resolver: "#{@ipKeyResolver}"
-#                redis-rate-limiter.replenishRate: 100 #令牌每秒填充速率
-#                redis-rate-limiter.burstCapacity: 1000 #令牌桶总量
         - id: user
           uri: lb://user
           predicates:
@@ -75,6 +70,11 @@ spring:
             - Path=/shopping/**
           filters:
             - StripPrefix=1
+#            - name: RequestRateLimiter #请求数限流
+#              args:
+#                key-resolver: "#{@ipKeyResolver}"
+#                redis-rate-limiter.replenishRate: 100 #令牌每秒填充速率
+#                redis-rate-limiter.burstCapacity: 1000 #令牌桶总量
 
         - id: management
           uri: lb://management
