@@ -89,6 +89,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Integer payOrder(long id) {
+        Order order = orderDao.findOrderById(id);
+        int uid = order.getUid();
+        if (order.getStatus() != 0) {
+            return 0;
+        }
         return orderDao.payOrder(id);
     }
 }

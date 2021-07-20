@@ -3,6 +3,9 @@ package pro.doublez.management.feign;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import pro.doublez.ddmall_api.pojo.Goods;
+import pro.doublez.ddmall_api.pojo.SeckillGoods;
+
+import java.util.Date;
 
 
 /**
@@ -83,4 +86,47 @@ public interface GoodsFeign {
     //移除所有删除状态的商品
     @DeleteMapping("/goods/delete_all_in_del")
     Integer deleteGoods();
+
+    //用户查询所有秒杀商品
+    @GetMapping("/seckillGoods/all_seckill_sale")
+    public SeckillGoods[] findAllSeckillOnSale();
+
+    //用户根据id查询秒杀商品
+    @GetMapping("/seckillGoods/find_seckill_sale_by_id/{id}")
+    public SeckillGoods findSeckillOnSaleById(@PathVariable long id);
+
+    //用户根据名称查询秒杀商品
+    @GetMapping("/seckillGoods/find_seckill_sale_by_name/{name}")
+    public SeckillGoods[] findSeckillOnSaleByName(@PathVariable String name) ;
+
+    //查询所有秒杀商品
+    @GetMapping("/seckillGoods/all_seckill")
+    public SeckillGoods[] findAllSeckill();
+
+    //根据id查询秒杀商品
+    @GetMapping("/seckillGoods/find_seckill_by_id/{id}")
+    public SeckillGoods findSeckillById(@PathVariable long id);
+
+    //根据名称查询秒杀商品
+    @GetMapping("/seckillGoods/find_seckill_by_name/{name}")
+    public SeckillGoods[] findSeckillByName(@PathVariable String name);
+
+    //减少秒杀商品库存
+    @PostMapping("/seckillGoods/down_seckill_count/{count}/{secId}")
+    public Integer downSeckillCount(@PathVariable int count,@PathVariable long secId);
+
+    //添加秒杀商品
+    @PutMapping("/seckillGoods/add_seckill_goods/{name}/{price}/{count}")
+    public SeckillGoods addSeckillGoods(@PathVariable String name, @PathVariable double price,
+                                        @PathVariable int count);
+
+    //修改秒杀商品的开始时间和结束时间
+    @PostMapping("/seckillGoods/change_seckill_goods_time/{startOrEnd}/{id}/{year}/{month}/{day}/{hour}/{minute}/{second}")
+    public Date changeSeckillGoodsTime(@PathVariable int startOrEnd, @PathVariable long id,
+                                       @PathVariable String year, @PathVariable String month,
+                                       @PathVariable String day, @PathVariable String hour,
+                                       @PathVariable String minute, @PathVariable String second);
+    //修改秒杀商品的库存
+    @PostMapping("/seckillGoods/change_seckill_goods_count/{id}/{count}")
+    public Integer changeSeckillGoodsCount(@PathVariable long id, @PathVariable int count);
 }

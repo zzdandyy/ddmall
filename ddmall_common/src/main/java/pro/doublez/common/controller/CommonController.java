@@ -8,6 +8,7 @@ import pro.doublez.ddmall_api.constant.StatusCode;
 import pro.doublez.ddmall_api.dto.ResultDto;
 import pro.doublez.ddmall_api.pojo.Admin;
 import pro.doublez.ddmall_api.pojo.Goods;
+import pro.doublez.ddmall_api.pojo.SeckillGoods;
 import pro.doublez.ddmall_api.pojo.User;
 import pro.doublez.ddmall_api.utils.JwtUtil;
 
@@ -112,4 +113,32 @@ public class CommonController {
         dto.setBean(goodsByName).setCode(StatusCode.OK).setMsg("查找成功");
         return dto;
     }
+
+    //查询所有秒杀商品
+    @GetMapping("/all_seckill")
+    public ResultDto<SeckillGoods[]> findAllSeckillOnSale() {
+        SeckillGoods[] goods = goodsFeign.findAllSeckillOnSale();
+        ResultDto<SeckillGoods[]> dto = new ResultDto<>();
+        dto.setBean(goods).setCode(StatusCode.OK).setMsg("查询成功");
+        return dto;
+    }
+
+    //根据id查询秒杀商品
+    @GetMapping("/find_seckill_by_id/{id}")
+    public ResultDto<SeckillGoods> findSeckillOnSaleById(@PathVariable long id) {
+        SeckillGoods goods = goodsFeign.findSeckillOnSaleById(id);
+        ResultDto<SeckillGoods> dto = new ResultDto<>();
+        dto.setBean(goods).setCode(StatusCode.OK).setMsg("查询成功");
+        return dto;
+    }
+
+    //根据名称查询秒杀商品
+    @GetMapping("/find_seckill_by_name/{name}")
+    public ResultDto<SeckillGoods[]> findSeckillOnSaleByName(@PathVariable String name) {
+        SeckillGoods[] goods = goodsFeign.findSeckillOnSaleByName(name);
+        ResultDto<SeckillGoods[]> dto = new ResultDto<>();
+        dto.setBean(goods).setCode(StatusCode.OK).setMsg("查询成功");
+        return dto;
+    }
+
 }
